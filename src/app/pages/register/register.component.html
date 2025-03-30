@@ -1,0 +1,8 @@
+<div>
+    <form [formGroup]="formRegister" (ngSubmit)="onSubmit()">
+        <input type="text" formControlName="usuario">
+        <input type="text" formControlName="contrasena">
+        <input type="text" formControlName="repiteContrasena">
+        <button type="submit" [disabled]="!formRegister.valid">Enviar</button>
+    </form>
+</div>

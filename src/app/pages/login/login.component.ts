@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule,FormBuilder,FormGroup,Validators } from '@angular/forms';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -11,9 +12,9 @@ import { ReactiveFormsModule,FormBuilder,FormGroup,Validators } from '@angular/f
 })
 export class LoginComponent {
   formLogin:FormGroup;
-  constructor(private fb:FormBuilder){
+  constructor(private fb:FormBuilder, private userService:UserService){
       this.formLogin = this.fb.group({
-          nombre:['',Validators.required],
+          usuario:['',Validators.required],
           contrasena:['',Validators.required]
       });
   }
@@ -23,6 +24,14 @@ export class LoginComponent {
  
     if(this.formLogin.valid){
       console.log(this.formLogin.value);
+      let usuario = this.formLogin.value;
+
+      this.userService.addUsuario(usuario).subscribe(res=>{
+        console.log(res);
+      },(err) =>{
+        console.log(err);
+      });
+      
     }
   }
 
