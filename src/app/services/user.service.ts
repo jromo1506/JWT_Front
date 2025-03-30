@@ -35,4 +35,12 @@ export class UserService {
   deleteUsuario(id:string){
     return this.http.delete(this.api.getURL() + "/usuario/"+ id);
   }
+
+
+
+
+  //Autenticar Usuario
+  authUsuario(user:any){
+    return this.http.post(this.api.getURL() + "/login",user);
+  }
 }

@@ -25,14 +25,18 @@ export class LoginComponent {
     if(this.formLogin.valid){
       console.log(this.formLogin.value);
       let usuario = this.formLogin.value;
-
-      this.userService.addUsuario(usuario).subscribe(res=>{
-        console.log(res);
-      },(err) =>{
-        console.log(err);
-      });
+      this.autenticarUsuario();
       
     }
+  }
+
+
+  autenticarUsuario(){
+    this.userService.authUsuario(this.formLogin.value).subscribe(res => {
+      console.log(res);
+    },(err) => {
+      console.log(err);
+    });
   }
 
 }
