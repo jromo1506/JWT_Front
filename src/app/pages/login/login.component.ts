@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule,FormBuilder,FormGroup,Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class LoginComponent {
   formLogin:FormGroup;
-  constructor(private fb:FormBuilder, private userService:UserService){
+  constructor(private fb:FormBuilder, private userService:UserService,private authService:AuthService){
       this.formLogin = this.fb.group({
           usuario:['',Validators.required],
           contrasena:['',Validators.required]
@@ -32,7 +33,7 @@ export class LoginComponent {
 
 
   autenticarUsuario(){
-    this.userService.authUsuario(this.formLogin.value).subscribe(res => {
+    this.authService.login(this.formLogin.value).subscribe(res => {
       console.log(res);
     },(err) => {
       console.log(err);

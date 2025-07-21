@@ -21,7 +21,7 @@ export class UserService {
   }
 
   // Get Usuarios
-  getUsuarios(id:string):Observable<any>{
+  getUsuarios():Observable<any>{
     return this.http.get(this.api.getURL()+ "/usuario");
   }
 
