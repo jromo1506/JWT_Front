@@ -1,20 +1,35 @@
-<div>
+<div @fadeIn class="w-full h-[100vh] bg-slate-900">
     <form [formGroup]="formLogin" (ngSubmit)="onSubmit()" class="w-full flex flex-col justify-center  items-center">
         
-        <div  class="bg-stone-200 w-[40%] flex flex-col items-center my-[10%] p-9">
-            <div>
-                <label>Usuario<br>
-                    <input type="text" formControlName="usuario">
-                </label>
-            </div><br>
-            <div>
-                <label>Contrasena
-                    <br>
-                    <input type="text" formControlName="contrasena">
-                </label>
-            </div><br>
-            <div>
-                <button type="submit" [disabled]="!formLogin.valid" class="bg-green-700 text-white px-5">Acceder</button>
+        <div  class="w-[40%] flex flex-col items-center  my-[10%] p-5  bg-white  ">
+            <div class="text-4xl my-5">
+                <h1>Sign In</h1>
+            </div>
+
+            <div class="my-2 w-[70%] ">
+                <div>
+                    Username
+                </div>
+                <div>
+                    <input type="text" class="w-full" formControlName="usuario">
+
+                </div>
+               
+            </div>
+
+            <div class="my-2 w-[70%]">
+              <div>
+                    Password
+                </div>
+                <div>
+                    <input type="text"  class="w-full" formControlName="contrasena">
+
+                </div>
+                
+            </div>
+
+            <div class="mt-5">
+                <button type="submit" [disabled]="!formLogin.valid" class="bg-blue-950 py-2 hover:bg-yellow-600 hover:cursor-pointer text-white px-5">Acceder</button>
     
             </div>
         

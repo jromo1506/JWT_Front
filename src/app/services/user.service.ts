@@ -12,17 +12,17 @@ export class UserService {
 
   // Add usuario
   addUsuario(user:any):Observable<any>{
-    return this.http.post(this.api.getURL() + "/usuario",user);
+    return this.http.post(this.api.getURL() + "/users",user);
   }
 
   // Get Usuario
   getUsuario(id:string):Observable<any>{
-    return this.http.get(this.api.getURL() + "/usuario/" + id);
+    return this.http.get(this.api.getURL() + "/users/" + id);
   }
 
   // Get Usuarios
   getUsuarios():Observable<any>{
-    return this.http.get(this.api.getURL()+ "/usuario");
+    return this.http.get(this.api.getURL()+ "/users");
   }
 
   // Put Usuario
@@ -33,7 +33,7 @@ export class UserService {
   // Delte Usuario
 
   deleteUsuario(id:string){
-    return this.http.delete(this.api.getURL() + "/usuario/"+ id);
+    return this.http.delete(this.api.getURL() + "/users/"+ id);
   }
 
 

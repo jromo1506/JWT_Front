@@ -1,5 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
-
+@import url('https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+*{
+      font-family: "Onest", sans-serif;
+}
+
+
+
+button, a {
+    transition: all ease 0.3s;
+    cursor: pointer;
+}
+
+
+
+input{
+    
+    color: rgb(31, 31, 31);
+    border-bottom: 2px solid rgb(109, 109, 109);
+    transition: all ease 0.3s;
+
+}
+
+input:focus{
+    outline:none;
+    border-bottom: 2px solid rgb(255, 196, 0);
+}
