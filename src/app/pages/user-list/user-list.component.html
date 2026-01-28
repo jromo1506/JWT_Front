@@ -1,0 +1,51 @@
+
+
+<div class="w-full flex flex-col items-center">
+
+
+
+
+    <div class="w-[60%]">
+
+        <div class="py-5">
+            <h1 class="text-2xl">User list</h1>
+        </div>
+        
+        <div class=" w-full relative overflow-x-auto text-white shadow-xs rounded-base ">
+            <table class="w-full text-sm text-left rtl:text-right text-body">
+                <thead class="text-sm text-body bg-blue-900 bg-neutral-secondary-soft rounded-base border-default">
+                    <tr>
+                        <th scope="col" class="p-2 font-medium">
+                            Username
+                        </th>
+                        <th scope="col" class="p-2 font-medium">
+                            Email
+                        </th>
+                        <th scope="col" class="p-2 font-medium text-center">
+                            Action
+                        </th>
+                        
+                    </tr>
+                </thead>
+                <tbody class="bg-white text-slate-900">
+                    <tr *ngFor="let user of usuarios" class="bg-neutral-primary border-b border-default">
+                        <th scope="row" class="p-1 font-medium text-heading whitespace-nowrap">
+                        {{user.username}}
+                        </th>
+                        <th scope="row" class="p-1 font-medium text-heading whitespace-nowrap">
+                        {{user.email}}
+                        </th>
+                        <td class=" p-1 flex justify-around items-center">
+                           <i class="fa-regular fa-circle-xmark"></i>
+                        </td>
+                
+                    </tr>
+                
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+ 
+
+</div>

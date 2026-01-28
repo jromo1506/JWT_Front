@@ -12,22 +12,22 @@ export class UserService {
 
   // Add usuario
   addUsuario(user:any):Observable<any>{
-    return this.http.post(this.api.getURL() + "/users",user);
+    return this.http.post(this.api.getURL() + "/api/users",user);
   }
 
   // Get Usuario
   getUsuario(id:string):Observable<any>{
-    return this.http.get(this.api.getURL() + "/users/" + id);
+    return this.http.get(this.api.getURL() + "/api/users/" + id);
   }
 
   // Get Usuarios
   getUsuarios():Observable<any>{
-    return this.http.get(this.api.getURL()+ "/users");
+    return this.http.get(this.api.getURL()+ "/api/users");
   }
 
   // Put Usuario
   modificarUsuario(id:string,user:any){
-    return this.http.put(this.api.getURL() + "/usuario/" +id,user);
+    return this.http.put(this.api.getURL() + "/api/usuario/" +id,user);
   }
 
   // Delte Usuario

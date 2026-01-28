@@ -15,37 +15,24 @@ import { AuthService } from './services/auth.service';
 export class AuthInterceptor implements HttpInterceptor {
 
   private authService = inject(AuthService);
-  constructor() {}
 
-  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    const token = this.authService.getAccessToken();
+  intercept(
+    request: HttpRequest<unknown>,
+    next: HttpHandler
+  ): Observable<HttpEvent<unknown>> {
+
+    const authHeader = this.authService.getAuthorizationHeader();
     console.log('Interceptor activo - URL:', request.url);
+    console.log('AUTH HEADER =>', authHeader);
 
-        const authReq = token
-          ? request.clone({
-              setHeaders: {
-                Authorization: `Bearer ${token}`
-              }
-            })
-          : request;
+    const authReq = authHeader
+      ? request.clone({
+          setHeaders: {
+            Authorization: authHeader
+          }
+        })
+      : request;
 
-        return next.handle(authReq).pipe(
-          catchError((err: HttpErrorResponse) => {
-            if (err.status === 401) {
-              return this.authService.refreshToken().pipe(
-                switchMap(() => {
-                  const newToken = this.authService.getAccessToken();
-                  const retryReq = request.clone({
-                    setHeaders: {
-                      Authorization: `Bearer ${newToken}`
-                    }
-                  });
-                  return next.handle(retryReq);
-                })
-              );
-            }
-            return throwError(() => err);
-          })
-        );
+    return next.handle(authReq);
   }
 }

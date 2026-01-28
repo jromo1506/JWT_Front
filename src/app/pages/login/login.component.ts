@@ -4,6 +4,7 @@ import { ReactiveFormsModule,FormBuilder,FormGroup,Validators } from '@angular/f
 import { UserService } from 'src/app/services/user.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { Swal2Service } from 'src/app/services/swal2.service';
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -21,10 +22,10 @@ import { trigger, transition, style, animate } from '@angular/animations';
 })
 export class LoginComponent {
   formLogin:FormGroup;
-  constructor(private fb:FormBuilder, private userService:UserService,private authService:AuthService){
+  constructor(private fb:FormBuilder, private userService:UserService,private authService:AuthService, private swalAlert:Swal2Service){
       this.formLogin = this.fb.group({
-          usuario:['',Validators.required],
-          contrasena:['',Validators.required]
+          username:['',Validators.required],
+          password:['',Validators.required]
       });
   }
 
@@ -43,6 +44,8 @@ export class LoginComponent {
   autenticarUsuario(){
     this.authService.login(this.formLogin.value).subscribe(res => {
       console.log(res);
+      this.authService.saveToken(res.token,res.type);
+      this.swalAlert.success("Done","Login succesful");
     },(err) => {
       console.log(err);
     });

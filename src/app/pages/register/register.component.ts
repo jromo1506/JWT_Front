@@ -2,23 +2,35 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule,FormBuilder,FormGroup,Validators} from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
+import { trigger, transition, style, animate } from '@angular/animations';
+import { AuthService } from 'src/app/services/auth.service';
+
 
 @Component({
   selector: 'app-register',
   standalone: true,
   imports: [CommonModule,ReactiveFormsModule],
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss'],
+  animations:[
+      trigger('fadeIn', [
+        transition(':enter', [
+          style({ opacity: 0 }),
+          animate('300ms ease-out', style({ opacity: 1 }))
+        ])
+      ])
+    ]
 })
 export class RegisterComponent {
   
   formRegister:FormGroup;
   
-  constructor(private fb:FormBuilder,private userService:UserService){
+  constructor(private fb:FormBuilder,private userService:UserService, private authService:AuthService){
     this.formRegister = this.fb.group({
-      usuario:['',Validators.required],
-      contrasena:['',Validators.required],
-      repiteContrasena:['',Validators.required]
+      username:['',Validators.required],
+      email:['',Validators.email],
+      password:['',Validators.required],
+      repeatPassword:['',Validators.required]
     });
 
   }
@@ -44,11 +56,12 @@ export class RegisterComponent {
   }
 
   registrarUsuario(){
-    this.userService.addUsuario(this.formRegister.value).subscribe(res =>{
+    this.authService.register(this.formRegister.value).subscribe(res=>{
       console.log(res);
-    },(err)=>{
+    },err=>{
       console.log(err);
-    });
+    }
+  );
   }
 
 
