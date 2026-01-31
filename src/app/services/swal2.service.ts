@@ -39,7 +39,7 @@ export class Swal2Service {
       showCancelButton: true,
       confirmButtonText,
       cancelButtonText
-    }).then(result => result.isConfirmed);
+    }).then((result:any) => result.isConfirmed);
   }
 
   private fire(title: string, text: string | undefined, icon: SweetAlertIcon) {

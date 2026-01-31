@@ -9,7 +9,11 @@
 
         <div class="py-5">
             <h1 class="text-2xl">User list</h1>
+            <div class="my-1 text-sm">
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus officia obcaecati expedita maxime exercitationem delectus error distinctio, quisquam officiis dignissimos molestias eos maiores. Repellendus magni aliquam itaque, facere corporis repudiandae.</p>
+            </div>
         </div>
+
         
         <div class=" w-full relative overflow-x-auto text-white shadow-xs rounded-base ">
             <table class="w-full text-sm text-left rtl:text-right text-body">
@@ -27,22 +31,38 @@
                         
                     </tr>
                 </thead>
-                <tbody class="bg-white text-slate-900">
-                    <tr *ngFor="let user of usuarios" class="bg-neutral-primary border-b border-default">
+                <tbody class="bg-gray-100 text-slate-900">
+                    <tr *ngFor="let user of usuarios | paginate: { itemsPerPage: itemsPerPage, currentPage: p }"
+                            class="bg-neutral-primary border-b border-default">
                         <th scope="row" class="p-1 font-medium text-heading whitespace-nowrap">
                         {{user.username}}
                         </th>
                         <th scope="row" class="p-1 font-medium text-heading whitespace-nowrap">
                         {{user.email}}
                         </th>
-                        <td class=" p-1 flex justify-around items-center">
-                           <i class="fa-regular fa-circle-xmark"></i>
+                        <td class=" p-1 flex justify-center items-center">
+                            <div>
+                           <i class="fa-regular fa-circle-xmark hover:text-red-500 hover:cursor-pointer"></i>
+
+                            </div>
+                            <div>
+                                <i class="fa-solid fa-wrench  hover:text-red-500 hover:cursor-pointer"></i>
+                            </div>
                         </td>
                 
                     </tr>
                 
                 </tbody>
             </table>
+        </div>
+
+
+        <div class="w-full flex justify-end">
+            <pagination-controls
+  (pageChange)="p = $event"
+  class="mt-4 text-sm">
+</pagination-controls>
+
         </div>
 
     </div>
